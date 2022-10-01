@@ -1,4 +1,4 @@
-// Implementing Array In JavaScript
+// // Implementing Array In JavaScript
 
 class MyArray {
   constructor() {
@@ -7,6 +7,7 @@ class MyArray {
   }
 
   get(index) {
+    console.log(this.data);
     return this.data[index];
   }
 
@@ -18,9 +19,14 @@ class MyArray {
 
   pop() {
     const lastItem = this.data[this.length - 1];
+
+    // this will not work
+    // delete lastItem;
+
     delete this.data[this.length - 1];
     this.length--;
-    return lastItem;
+    console.log(lastItem);
+    return this.data;
   }
 
   deleteAtIndex(index) {
@@ -34,13 +40,12 @@ class MyArray {
       return false;
     }
 
-    for (let i = index; i <= this.length - 1; i++) {
+    for (let i = index; i < this.length - 1; i++) {
+      console.log(this.data[i], this.data[i + 1]);
       this.data[i] = this.data[i + 1];
     }
-    console.log(this.data[this.length - 1]);
-    // delete this.data[this.length - 1];
-    this.pop();
 
+    delete this.data[index];
     this.length--;
   }
 }
