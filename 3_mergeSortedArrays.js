@@ -30,6 +30,41 @@ mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
 
 //Above will through an error if first item is zero in both the array. Solve it
 
+//Improved:)
+
+function mergeSortedArray(array1, array2) {
+  if (!array1.length && !array2.length) return [];
+
+  if (!array1.length) return array2;
+  if (!array2.length) return array1;
+
+  const mergedArray = [];
+
+  let i = 0;
+  let j = 0;
+
+  const totalArrayLength = array1.length + array2.length;
+
+  while (i + j < totalArrayLength) {
+    if (array2[j] === undefined || array1[i] < array2[j]) {
+      mergedArray.push(array1[i]);
+      i++;
+    } else if (array1[i] === undefined || array2[j] < array1[i]) {
+      mergedArray.push(array2[j]);
+      j++;
+    } else if (array1[i] === array2[j]) {
+      mergedArray.push(array1[i]);
+      mergedArray.push(array2[j]);
+      i++;
+      j++;
+    }
+  }
+
+  return mergedArray;
+}
+
+mergeSortedArray([0, 2, 4, 6], [0, 1, 3, 5, 7]);
+
 //Attempt
 // function mergeSortedArrays(arr1, arr2) {
 //   if (arr1.length === 0) {
@@ -61,4 +96,3 @@ mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
 //     newArray.push(arr1[i]);
 //   }
 // }
-
