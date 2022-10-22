@@ -15,6 +15,12 @@
 //   },
 // };
 
+//Created new class "Node", because newNode code was repeating. DRY
+class Node {
+  constructor(value) {
+    (this.value = value), (this.next = null);
+  }
+}
 class MyLinkedList {
   constructor(value) {
     this.head = {
@@ -26,18 +32,49 @@ class MyLinkedList {
   }
 
   append(value) {
-    const newNode = {
-      value: value,
-      next: null,
-    };
+    const newNode = new Node(value);
+
+    // const newNode = {
+    //   value: value,
+    //   next: null,
+    // };
 
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
     return this;
   }
+
+  prepend(value) {
+    const newNode = new Node(value);
+
+    // const newNode = {
+    //   value: value,
+    //   next: null,
+    // };
+
+    newNode.next = this.head;
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
+
+  //Print list method for better visualization.
+  printList() {
+    const array = [];
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      array.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return array;
+  }
+
+  
 }
 
 const myLinkedList = new MyLinkedList(5);
 console.log(myLinkedList);
 console.log(myLinkedList.append(2));
+console.log(myLinkedList.prepend(3));
+console.log(myLinkedList.printList());
