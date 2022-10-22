@@ -70,11 +70,79 @@ class MyLinkedList {
     return array;
   }
 
-  
+  insert(index, value) {
+    if (index < 0) {
+      console.log("can't insert at negative index!");
+      return;
+    }
+
+    if (index >= this.length) {
+      this.append(value);
+      return this.printList();
+    }
+
+    if (index === 0) {
+      this.prepend(value);
+      return this.printList();
+    }
+
+    const newNode = new Node(value);
+
+    let leader = this.traverseToIndex(index - 1);
+    let holdingPointer = leader.next;
+
+    // (Leader) * -- * (holding pointer)
+    //           \  /
+    //            * (New Node)
+
+    leader.next = newNode;
+    newNode.next = holdingPointer;
+    this.length++;
+
+    return this.printList();
+  }
+
+  traverseToIndex(index) {
+    let count = 0;
+    let currentNode = this.head;
+    while (count !== index) {
+      currentNode = currentNode.next;
+      count++;
+    }
+
+    return currentNode;
+  }
+
+  remove(index) {
+    if (index >= this.length) {
+      console.log(
+        "Index exceeds the length of the Linked List,It Can't be deleted."
+      );
+    } else if (index === 0) {
+      this.head = this.head.next;
+      this.length--;
+      return this.printList;
+    } else {
+      //My Approach
+      // let leader = this.traverseToIndex(index - 1);
+      // let unwantedNode = leader.next;
+      // let toBePointedNode = unwantedNode.next;
+      // leader.next = toBePointedNode;
+
+      let leader = this.traverseToIndex(index - 1);
+      let unwantedNode = leader.next;
+      leader.next = unwantedNode.next;
+
+      this.length--;
+      return this.printList();
+    }
+  }
 }
 
 const myLinkedList = new MyLinkedList(5);
-console.log(myLinkedList);
-console.log(myLinkedList.append(2));
-console.log(myLinkedList.prepend(3));
-console.log(myLinkedList.printList());
+console.log(myLinkedList.append(5));
+console.log(myLinkedList.append(16));
+console.log(myLinkedList.prepend(1));
+console.log(myLinkedList.insert(2, 99));
+console.log(myLinkedList.insert(20, 88));
+console.log(myLinkedList.remove(2));
