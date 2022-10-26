@@ -113,18 +113,32 @@ class MyDoublyLinkedList {
       return this.head;
     }
 
-    let first = this.head;
-    this.tail = this.head;
-    let second = first.next;
+    //   let first = this.head;
+    //   this.tail = this.head;
+    //   let second = first.next;
 
-    while (second) {
-      let temp = second.next;
-      second.next = first;
-      first = second;
-      second = temp;
+    //   while (second) {
+    //     let temp = second.next;
+    //     second.next = first;
+    //     first = second;
+    //     second = temp;
+    //   }
+    //   this.head.next = null;
+    //   this.head = first;
+    //   return this.printList();
+
+    //Improved Solution  https://www.youtube.com/watch?v=S9kMVEUg-x4
+    let prev = null;
+    let curr = this.head;
+
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
     }
-    this.head.next = null;
-    this.head = first;
+
+    this.head = prev;
     return this.printList();
   }
 }
