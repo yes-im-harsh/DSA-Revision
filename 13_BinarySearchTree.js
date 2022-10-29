@@ -54,6 +54,50 @@ class BinarySearchTree {
       return null;
     }
   }
+
+  //Finding Min & Max. (Left Most Value is Minimum & Right Most Value is Maximum)
+
+  // findMin() {
+  //   if (!this.root) {
+  //     return null;
+  //   }
+  //   let currentNode = this.root;
+  //   while (currentNode.left !== null) {
+  //     currentNode = currentNode.left;
+  //   }
+
+  //   return currentNode.value;
+  // }
+
+  // findMax() {
+  //   if (!this.root) {
+  //     return null;
+  //   }
+
+  //   let currentNode = this.root;
+  //   while (currentNode.right !== null) {
+  //     currentNode = currentNode.right;
+  //   }
+  //   return currentNode.value;
+  // }
+
+  //Finding Min & Max Using Recursion.
+
+  findMin(root) {
+    if (!root.left) {
+      return root.value;
+    } else {
+      return this.findMin(root.left);
+    }
+  }
+
+  findMax(root) {
+    if (!root.right) {
+      return root.value;
+    } else {
+      return this.findMax(root.right);
+    }
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -69,6 +113,10 @@ JSON.stringify(traverse(tree.root));
 
 tree.lookup(15);
 tree.lookup(7);
+// tree.findMin()
+// tree.findMax()
+tree.findMax(tree.root);
+tree.findMin(tree.root);
 
 //     9
 //  4     20
