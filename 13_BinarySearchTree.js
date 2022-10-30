@@ -153,6 +153,7 @@ tree.findMin(tree.root);
 
 tree.delete(9);
 tree.delete(15);
+tree.delete(6)
 
 //     9
 //  4     20
