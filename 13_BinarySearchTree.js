@@ -98,6 +98,39 @@ class BinarySearchTree {
       return this.findMax(root.right);
     }
   }
+
+  //Remove
+  delete(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+
+  deleteNode(root, value) {
+    if (root === null) {
+      return root;
+    }
+
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+    } else {
+      //No child Node
+      if (!root.left && !root.right) {
+        return null;
+      }
+
+      //Only Left Child
+      if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      }
+
+      root.value = this.findMin(root.right);
+      root.right = this.deleteNode(root.right, root.value);
+    }
+    return root;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -117,6 +150,9 @@ tree.lookup(7);
 // tree.findMax()
 tree.findMax(tree.root);
 tree.findMin(tree.root);
+
+tree.delete(9);
+tree.delete(15);
 
 //     9
 //  4     20
