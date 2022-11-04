@@ -17,7 +17,7 @@ function loopBack() {
 
 let counter = 0;
 
-function loopBack() {
+(function loopBack() {
   console.log(counter);
 
   if (counter > 3) {
@@ -26,4 +26,4 @@ function loopBack() {
 
   counter++;
   return loopBack();
-}
+})();
