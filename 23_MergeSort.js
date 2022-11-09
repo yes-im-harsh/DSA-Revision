@@ -47,6 +47,9 @@ function mergeSort2(arr) {
   let leftArr = arr.slice(0, mid);
   let rightArr = arr.slice(mid);
 
+  console.log("Left Array: ", leftArr)
+  console.log("Right Array: ", rightArr)
+
   return merge(mergeSort2(leftArr), mergeSort2(rightArr));
 }
 
