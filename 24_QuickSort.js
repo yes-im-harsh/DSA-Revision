@@ -8,7 +8,7 @@ function quickSort(arr) {
   let left = [];
   let right = [];
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length - 1; i++) {
     if (arr[i] < pivot) {
       left.push(arr[i]);
     } else {
@@ -16,8 +16,8 @@ function quickSort(arr) {
     }
   }
 
-  return [...quickSort(left), pivot, quickSort(right)];
+  return [...quickSort(left), pivot, ...quickSort(right)];
 }
 
-const arr = [8, 20, -2, -4, -6];
+const arr = [8, 20, -2, 4, -6, 0];
 console.log(quickSort(arr));
